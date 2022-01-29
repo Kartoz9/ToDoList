@@ -1,6 +1,7 @@
 from django.db import models
-
 # Create your models here.
+
+#from todo_app.models import Tod o
 
 
 class Todo(models.Model):
