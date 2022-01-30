@@ -4,10 +4,10 @@
 
 {% block content %}
 
-    <h2>Все дни недели:</h2>
+    <h2>Планы на:</h2>
     <ul>
-        {% for movie in movies %}
-            <li> <a href="{{ movie.get_url }}">{{movie.name}}</a></li>
+        {% for el in todo %}
+            <li><a href="{{ el.get_url }}">{{el.day}}</a> </li>
         {% endfor %}
     </ul>
 

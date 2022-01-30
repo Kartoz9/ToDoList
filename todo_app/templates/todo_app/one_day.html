@@ -1,8 +1,11 @@
 {% extends 'todo_app/base.html' %}
 
-{% block title %} Планы на {{todo.day}} {% endblock %}
+{% block title %} Планы на {{example.day}} {% endblock %}
 
 {% block content %} 
 
+    <h2>День - {{example.day}}</h2>
+    <h2>Дата - {{example.number}}.{{example.month}}</h2>
+    <h2>Задача(и): {{example.task}}</h2>
 
 {% endblock %}
