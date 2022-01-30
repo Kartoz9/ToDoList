@@ -6,11 +6,11 @@ from .models import Todo
 
 
 def show_all_days(request):
-    pass
+    return render(request, 'todo_app/all_days.html')
 
 
 def show_one_day(request):
-    pass
+    return render(request, 'todo_app/one_day.html')
 
 
 def show_calendar(request):

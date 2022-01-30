@@ -1,0 +1,14 @@
+{% extends 'todo_app/base.html' %}
+
+{% block title %} Ежедневник {% endblock %}
+
+{% block content %}
+
+    <h2>Все дни недели:</h2>
+    <ul>
+        {% for movie in movies %}
+            <li> <a href="{{ movie.get_url }}">{{movie.name}}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
