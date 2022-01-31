@@ -15,4 +15,4 @@ class Todo(models.Model):
         return f'Планы на {self.day} ({self.number}.{self.month})'
 
     def get_url(self):
-        return reverse('one-day', args=[self.id])
+        return reverse('one-day', args=[self.day])
