@@ -10,8 +10,8 @@ def show_all_days(request):
     })
 
 
-def show_one_day(request, day_todo: str):
-    example = Todo.objects.get(day=day_todo)
+def show_one_day(request, id_todo: str):
+    example = Todo.objects.get(id=id_todo)
     return render(request, 'todo_app/one_day.html', {
         'example': example,
     })

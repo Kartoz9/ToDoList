@@ -4,8 +4,9 @@
 
 {% block content %} 
     <a href="{% url 'menu'  %}">Главная</a> <a href="{% url 'calendar' %}">Календарь</a>
-    <h2>День - {{example.day}}</h2>
-    <h2>Дата - {{example.number}}.{{example.month}}</h2>
-    <h2>Задача(и): {{example.task}}</h2>
+
+        <h2>День - {{example.day}}</h2>
+        <h2>Дедлайн - {{example.deadline}}</h2>
+        <h2>Задача(и): {{example.task}}</h2>
 
 {% endblock %}

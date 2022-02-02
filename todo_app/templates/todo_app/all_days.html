@@ -8,7 +8,7 @@
     <h2>Планы на:</h2>
     <ul>
         {% for el in todo %}
-            <li><a href="{{ el.get_url }}">{{el.day}} </a> <h2>({{el.number}} день {{el.month}} месяца)</h2> </li>
+            <li><a href="{{ el.get_url }}">{{el.day}} </a> <h2>({{el.deadline}})</h2> </li>
         {% endfor %}
     </ul>
 

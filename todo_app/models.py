@@ -7,12 +7,11 @@ from django.urls import reverse
 
 class Todo(models.Model):
     day = models.CharField(max_length=25)
-    number = models.IntegerField()
-    month = models.IntegerField()
-    task = models.CharField(max_length=200)
+    deadline = models.DateField()
+    task = models.TextField()
 
     def __str__(self):
-        return f'Планы на {self.day} ({self.number}.{self.month})'
+        return f'Планы на {self.day}'
 
     def get_url(self):
-        return reverse('one-day', args=[self.day])
+        return reverse('one-day', args=[self.id])
