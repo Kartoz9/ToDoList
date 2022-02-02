@@ -1,8 +1,9 @@
-{% extends 'todo_app/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Календарь {% endblock %}
 
 {% block content %}
-    <a href="{% url 'menu'  %}">Главная</a>
+    <img src='{% static "main.png"%}' width = "25px" height="25"><a href="{% url 'menu'  %}">Главная</a>
     <iframe src="https://calendar.google.com/calendar/htmlembed?src=addressbook%23contacts%40group.v.calendar.google.com&ctz=Europe%2FBucharest" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 {% endblock %}}

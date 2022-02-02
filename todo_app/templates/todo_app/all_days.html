@@ -1,9 +1,10 @@
-{% extends 'todo_app/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Ежедневник {% endblock %}
 
 {% block content %}
-    <a href="{% url 'calendar' %}">Календарь</a>
+    <img src='{% static "calendar.png"%}' width = "25px" height="25"><a href="{% url 'calendar' %}">Календарь</a>
 
     <h2>Планы на:</h2>
     <ul>
