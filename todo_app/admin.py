@@ -4,7 +4,7 @@ from . models import Todo
 
 @admin.register(Todo) # or admin.site.register(Tod o, TodoAdmin)
 class TodoAdmin(admin.ModelAdmin):
-    list_display = ['day', 'deadline', 'task']
-    list_editable = ['task', 'deadline']
-    ordering = ['deadline']
+    list_display = ['day', 'date', 'task']
+    list_editable = ['task']
+    ordering = ['date']
     list_per_page = 7

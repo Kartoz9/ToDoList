@@ -6,9 +6,13 @@ from django.urls import reverse
 
 
 class Todo(models.Model):
-    day = models.CharField(max_length=25)
-    deadline = models.DateField()
-    task = models.TextField()
+    day = models.CharField(max_length=25, verbose_name='День недели')
+    date = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
+    task = models.TextField(verbose_name='Задачи на день')
+
+    class Meta:
+        verbose_name = 'Заметку'
+        verbose_name_plural = 'Заметки'
 
     def __str__(self):
         return f'Планы на {self.day}'
