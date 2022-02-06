@@ -3,13 +3,14 @@
 
 {% block title %} Ежедневник {% endblock %}
 
-{% block content %}
-    <img src='{% static "calendar.png"%}' width = "25px" height="25"><a href="{% url 'calendar' %}">Календарь</a>
 
-    <h2>Планы на:</h2>
-    <ul>
+{% block content %}
+
+    <h1 class="mt-4">Планы на:</h1>
+    <ul class="list-group">
         {% for el in todo %}
-            <li><a href="{{ el.get_url }}">{{el.day}} </a> <h2>({{el.deadline}})</h2> </li>
+            <li class="list-group-item"><a href="{{ el.get_url }}">{{el.day}}</a> <h3>(Последнее изменение: {{el.date}})</h3>
+            </li>
         {% endfor %}
     </ul>
 

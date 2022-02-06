@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Планы на {{example.day}} {% endblock %}
+{% block title %} {{example.day}} {% endblock %}
 
-{% block content %} 
-    <img src='{% static "main.png"%}' width = "25px" height="25"><a href="{% url 'menu'  %}">Главная</a> <img src='{% static "calendar.png"%}' width = "25px" height="25"><a href="{% url 'calendar' %}">Календарь</a>
 
-        <h2>День - {{example.day}}</h2>
-        <h2>Дедлайн - {{example.deadline}}</h2>
-        <h2>Задача(и): {{example.task}}</h2>
+{% block content %}
+
+    <h2 class="mt-4">Планы на {{example.day}}:</h2>
+    <h3 class="mt-5">{{example.task |capfirst}}</h3>
+    <h3 class="mt-5">Последнее изменение: - {{example.date}}</h3>
 
 {% endblock %}
