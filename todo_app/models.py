@@ -1,11 +1,10 @@
 from django.db import models
 from django.urls import reverse
-# Create your models here.
-
-#from todo_app.models import Tod o
+from django.contrib.auth.models import User
 
 
 class Todo(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец заметок', blank=True, null=True)
     day = models.CharField(max_length=25, verbose_name='День недели')
     date = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
     task = models.TextField(verbose_name='Задачи на день')

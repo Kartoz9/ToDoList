@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
-
 {% block title %} Окно редактирования {% endblock %}
 
 
@@ -44,21 +42,29 @@
   <tbody>
   {% for i in example %}
     <tr {% if i.id|slugify == request.GET.id %} style="background:green" {% endif %}>
-      <th>{{ i.id }}</th>
-      <td>{{ i.day }}</td>
-      <td>{{ i.date }}</td>
-      <td>{{ i.task }}</td>
-      <td><a href="{% url 'update-page' i.id %}">редактиовать</a></td>
+        <th>{{ i.id }}</th>
+        <td>{{ i.day }}</td>
+        <td>{{ i.date }}</td>
+        <td>{{ i.task }}</td>
+
       <td>
+        {% if request.user == i.author%}
+          <a href="{% url 'update-page' i.id %}">редактиовать</a>
+        {% endif %}
+      </td>
+
+      <td>
+        {% if request.user == i.author%}
         <form id="delete_form_{{i.id}}" action="{% url 'delete-page' i.id %}" method="post">{% csrf_token %}</form>
-        <a href="javascript:void()" onclick="delete_question_{{i.id}}()">удалить</a>
-        <script>
-           function delete_question_{{i.id}}(){
-            if (confirm('Вы уверены что хотите удалить заметку?')){
-              document.getElementById('delete_form_{{i.id}}').submit()
-            }
-          }
-        </script>
+          <a href="javascript:void()" onclick="delete_question_{{i.id}}()">удалить</a>
+            <script>
+               function delete_question_{{i.id}}(){
+                if (confirm('Вы уверены что хотите удалить заметку?')){
+                  document.getElementById('delete_form_{{i.id}}').submit()
+                }
+              }
+            </script>
+        {% endif %}
       </td>
     </tr>
   {% endfor %}
