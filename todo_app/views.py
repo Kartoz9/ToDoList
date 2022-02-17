@@ -4,18 +4,20 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User, Group, Permission
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth import authenticate, login
 from .models import Todo
 from .forms import TodoForm, AuthUserForm, RegisterUserForm
 
 
-def show_calendar(request):      #<img src='{% static "todo_app/img/calendar.png"%}' width = "25px" height="25">
+def show_calendar(request):
     return render(request, 'todo_app/calendar.html')
 
 
-class HomeListView(ListView):   #<img src='{% static "todo_app/img/main.png"%}' width = "25px" height="25">
+class HomeListView(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login-page')
     model = Todo
     template_name = 'todo_app/all_days.html'
     context_object_name = 'todo'
@@ -42,7 +44,7 @@ class CustomSuccessMessageMixin:
 
 
 class TodoCreateView(LoginRequiredMixin, CustomSuccessMessageMixin, CreateView):
-    login_url = reverse_lazy('login_page')
+    login_url = reverse_lazy('login-page')
     model = Todo
     template_name = 'todo_app/edit_page.html'
     form_class = TodoForm
@@ -71,11 +73,11 @@ class TodoUpdateView(LoginRequiredMixin, CustomSuccessMessageMixin, UpdateView):
         kwargs['update'] = True
         return super().get_context_data(**kwargs)
 
-    def get_form_kwargs(self):
+    '''def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         if self.request.user != kwargs['instance'].author:
             return self.handle_no_permission()
-        return kwargs
+        return kwargs'''
 
 
 class MyprojectLoginView(LoginView):
@@ -117,10 +119,12 @@ class TodoDeleteView(LoginRequiredMixin, DeleteView):
         messages.success(self.request, self.success_msg)
         return super().post(request)
 
-    def delete(self, request, *args, **kwargs):  #не працює
+    '''def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        if self.request.user != self.object.author:
+        #if self.request.user != self.object.author:
             return self.handle_no_permission()
         success_url = self.get_success_url()
         self.object.delete()
-        return HttpResponseRedirect(success_url)
+        return HttpResponseRedirect(success_url)'''
+
+

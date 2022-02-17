@@ -8,8 +8,10 @@
     <h1 class="mt-4">Планы на:</h1>
     <ul class="list-group">
         {% for el in todo %}
-            <li class="list-group-item"><a href="{{ el.get_url }}">{{el.day}}</a> <h3>(Последнее изменение: {{el.date}})</h3>
-            </li>
+            {% if request.user == el.author %}
+                <li class="list-group-item"><a href="{{ el.get_url }}">{{el.day}}</a> <h3>(Последнее изменение: {{el.date}})</h3>
+                </li>
+            {% endif %}
         {% endfor %}
     </ul>
 
