@@ -52,7 +52,7 @@ class TodoCreateView(LoginRequiredMixin, CustomSuccessMessageMixin, CreateView):
     success_msg = 'Заметка создана'
 
     def get_context_data(self, **kwargs):
-        kwargs['example'] = Todo.objects.all().order_by('id')
+        kwargs['example'] = Todo.objects.all().order_by('date')
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
@@ -83,7 +83,7 @@ class TodoUpdateView(LoginRequiredMixin, CustomSuccessMessageMixin, UpdateView):
 class MyprojectLoginView(LoginView):
     template_name = 'todo_app/login.html'
     form_class = AuthUserForm
-    success_url = reverse_lazy('edit-page')
+    success_url = reverse_lazy('menu')
 
     def get_success_url(self):
         return self.success_url
@@ -93,7 +93,7 @@ class RegisterUserView(CreateView):
     model = Todo
     template_name = 'todo_app/register_page.html'
     form_class = RegisterUserForm
-    success_url = reverse_lazy('edit-page')
+    success_url = reverse_lazy('menu')
     success_msg = 'Пользователь успешно создан'
 
     def form_valid(self, form):

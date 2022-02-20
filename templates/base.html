@@ -50,7 +50,13 @@
 
           {% endif %}
 
-          {{request.user}}
+          {% if request.user.is_authenticated %}
+
+           <li class="nav-item">
+            <a class="nav-link active" >Добро пожаловать, {{request.user}}</a>
+           </li>
+
+          {% endif %}
         </ul>
 
     {% block content %}

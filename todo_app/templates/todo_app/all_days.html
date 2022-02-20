@@ -5,13 +5,29 @@
 
 {% block content %}
 
+    <style>
+        .center {
+        position: absolute;	/* Абсолютное позиционирование */
+        width: 400px; /* Ширина слоя в пикселах */
+        height: 300px; /* Высота слоя в пикселах */
+        left: 50%; /* Положение слоя от левого края */
+        top: 50%; /* Положение слоя от верхнего края */
+        margin-left: -211px; /* Отступ слева, включает padding и border */
+        margin-top: -150px;	/* Отступ сверху */
+        }
+    </style>
+
+    <div class="center" ><a href="{% url 'edit-page' %}">Сделайте свою первую заметку!</a></div>
+
     <h1 class="mt-4">Планы на:</h1>
     <ul class="list-group">
         {% for el in todo %}
+
             {% if request.user == el.author %}
                 <li class="list-group-item"><a href="{{ el.get_url }}">{{el.day}}</a> <h3>(Последнее изменение: {{el.date}})</h3>
                 </li>
             {% endif %}
+
         {% endfor %}
     </ul>
 
