@@ -22,6 +22,10 @@ class HomeListView(LoginRequiredMixin, ListView):
     template_name = 'todo_app/all_days.html'
     context_object_name = 'todo'
 
+    def get_context_data(self, **kwargs):
+        kwargs['example'] = Todo.objects.all().order_by('date')
+        return super().get_context_data(**kwargs)
+
 
 class DetailPageView(DetailView):
     model = Todo
