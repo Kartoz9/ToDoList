@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.HomeListView.as_view(), name='menu'),
-    path('diary/<int:pk>', views.DetailPageView.as_view(), name='one-day'),  # pk тоже самое что и id
+    path('diary/<int:pk>', views.DetailPageView.as_view(), name='one-day'), 
     path('calendar', views.show_calendar, name='calendar'),
     path('edit-page', views.TodoCreateView.as_view(), name='edit-page'),
     path('update-page/<int:pk>', views.TodoUpdateView.as_view(), name='update-page'),

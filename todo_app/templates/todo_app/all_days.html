@@ -21,10 +21,10 @@
 
     <h1 class="mt-4">Планы на:</h1>
     <ul class="list-group">
-        {% for el in example %}
+        {% for task in tasks %}
 
-            {% if request.user == el.author %}
-                <li class="list-group-item"><a href="{{ el.get_url }}">{{el.day}}</a> <h3>(Последнее изменение: {{el.date}})</h3>
+            {% if request.user == task.author %}
+                <li class="list-group-item"><a href="{{ task.get_url }}">{{task.day}}</a> <h3>(Последнее изменение: {{task.date|date:'Y-m-d'}})</h3>
                 </li>
             {% endif %}
 

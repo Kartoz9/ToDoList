@@ -20,17 +20,15 @@ class HomeListView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('login-page')
     model = Todo
     template_name = 'todo_app/all_days.html'
-    context_object_name = 'todo'
-
-    def get_context_data(self, **kwargs):
-        kwargs['example'] = Todo.objects.all().order_by('date')
-        return super().get_context_data(**kwargs)
+    queryset = Todo.objects.all().order_by('date')
+    context_object_name = 'tasks'
 
 
-class DetailPageView(DetailView):
+class DetailPageView(LoginRequiredMixin, DetailView):
+    login_url = reverse_lazy('login-page')
     model = Todo
     template_name = 'todo_app/one_day.html'
-    context_object_name = 'example'
+    context_object_name = 'task'
 
 
 class CustomSuccessMessageMixin:
@@ -55,9 +53,8 @@ class TodoCreateView(LoginRequiredMixin, CustomSuccessMessageMixin, CreateView):
     success_url = reverse_lazy('edit-page')
     success_msg = 'Заметка создана'
 
-    def get_context_data(self, **kwargs):
-        kwargs['example'] = Todo.objects.all().order_by('date')
-        return super().get_context_data(**kwargs)
+    queryset = Todo.objects.all().order_by('date')
+    context_object_name = 'tasks'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -76,13 +73,6 @@ class TodoUpdateView(LoginRequiredMixin, CustomSuccessMessageMixin, UpdateView):
     def get_context_data(self, **kwargs):
         kwargs['update'] = True
         return super().get_context_data(**kwargs)
-
-    '''def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        if self.request.user != kwargs['instance'].author:
-            return self.handle_no_permission()
-        return kwargs'''
-
 
 class MyprojectLoginView(LoginView):
     template_name = 'todo_app/login.html'
@@ -122,13 +112,3 @@ class TodoDeleteView(LoginRequiredMixin, DeleteView):
     def post(self, request, *args, **kwargs):
         messages.success(self.request, self.success_msg)
         return super().post(request)
-
-    '''def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        #if self.request.user != self.object.author:
-            return self.handle_no_permission()
-        success_url = self.get_success_url()
-        self.object.delete()
-        return HttpResponseRedirect(success_url)'''
-
-

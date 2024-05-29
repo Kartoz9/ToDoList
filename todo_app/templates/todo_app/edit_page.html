@@ -4,9 +4,8 @@
 
 {% block content %}
 
-    <h2 class="mt-4">Создать/Изменить/Удалить планы на {{example.day}}:</h2>
+    <h2 class="mt-4">Создать/Изменить/Удалить планы:</h2>
 
-<!-- Button trigger modal -->
 <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Добавить новую заметку
 </button>
@@ -39,11 +38,11 @@
         </tr>
       </thead>
       <tbody>
-      {% for i in example %}
+      {% for i in tasks %}
         {% if request.user == i.author %}
-          <tr {% if i.id|slugify == request.GET.id %} style="background:green" {% endif %}>
+          <tr {% if i.id|slugify == request.GET.id %} style="background:rgb(40, 133, 40)" {% endif %}>
               <td>{{ i.day }}</td>
-              <td>{{ i.date }}</td>
+              <td>{{ i.date|date:'Y-m-d' }}</td>
               <td>{{ i.task }}</td>
 
             <td>
