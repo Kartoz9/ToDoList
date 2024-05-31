@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %} Окно редактирования {% endblock %}
+{% block title %} Вікно редагування {% endblock %}
 
 
 {% block content %}
 
-    <h2 class="mt-4">Создать/Изменить/Удалить планы:</h2>
+    <h2 class="mt-4">Створити/Змінити/Видалити плани:</h2>
 
 <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Добавить новую заметку
+  Додати новий запис
 </button>
 
     {% if messages %}
@@ -20,21 +20,21 @@
 
 
   {% if update %}
-    <p class="mt-3">Страница редактирования</p>
+    <p class="mt-3">Сторінка редагування</p>
     <form id="update_data" method="post">
       {% csrf_token %}
       {{ form }}
     </form>
-    <button form="update_data" type="submit" class="btn btn-primary">Обновить</button>
+    <button form="update_data" type="submit" class="btn btn-primary">Оновити</button>
   {% else %}
     <table class="table mt-4">
       <thead>
         <tr>
           <th scope="col">День</th>
-          <th scope="col">Дата последнего изменения</th>
-          <th scope="col">Задача</th>
-          <th scope="col">Редактирование</th>
-          <th scope="col">Удаление</th>
+          <th scope="col">Дата останньої зміни</th>
+          <th scope="col">Завдання</th>
+          <th scope="col">Редагування</th>
+          <th scope="col">Видалення</th>
         </tr>
       </thead>
       <tbody>
@@ -46,12 +46,12 @@
               <td>{{ i.task }}</td>
 
             <td>
-                <a href="{% url 'update-page' i.id %}">редактиовать</a>
+                <a href="{% url 'update-page' i.id %}">редагувати</a>
             </td>
 
             <td>
               <form id="delete_form_{{i.id}}" action="{% url 'delete-page' i.id %}" method="post">{% csrf_token %}</form>
-                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">удалить</a>
+                <a href="javascript:void()" onclick="delete_question_{{i.id}}()">видалити</a>
                   <script>
                      function delete_question_{{i.id}}(){
                       if (confirm('Вы уверены что хотите удалить заметку?')){
@@ -67,7 +67,6 @@
     </table>
   {% endif %}
 
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -82,8 +81,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-        <button form="add_form" type="submit" class="btn btn-primary">Добавить заметку</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+        <button form="add_form" type="submit" class="btn btn-primary">Додати нотатку</button>
       </div>
     </div>
   </div>

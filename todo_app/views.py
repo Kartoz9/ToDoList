@@ -51,7 +51,7 @@ class TodoCreateView(LoginRequiredMixin, CustomSuccessMessageMixin, CreateView):
     template_name = 'todo_app/edit_page.html'
     form_class = TodoForm
     success_url = reverse_lazy('edit-page')
-    success_msg = 'Заметка создана'
+    success_msg = 'Нотатка створена'
 
     queryset = Todo.objects.all().order_by('date')
     context_object_name = 'tasks'
@@ -68,7 +68,7 @@ class TodoUpdateView(LoginRequiredMixin, CustomSuccessMessageMixin, UpdateView):
     template_name = 'todo_app/edit_page.html'
     form_class = TodoForm
     success_url = reverse_lazy('edit-page')
-    success_msg = 'Заметка обновлена'
+    success_msg = 'Нотатка оновлена'
 
     def get_context_data(self, **kwargs):
         kwargs['update'] = True
@@ -88,7 +88,7 @@ class RegisterUserView(CreateView):
     template_name = 'todo_app/register_page.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('menu')
-    success_msg = 'Пользователь успешно создан'
+    success_msg = 'Користувач успішно створено'
 
     def form_valid(self, form):
         form_valid = super().form_valid(form)
@@ -107,7 +107,7 @@ class TodoDeleteView(LoginRequiredMixin, DeleteView):
     model = Todo
     template_name = 'todo_app/edit_page.html'
     success_url = reverse_lazy('edit-page')
-    success_msg = 'Заметка удалена'
+    success_msg = 'Нотатка видалена'
 
     def post(self, request, *args, **kwargs):
         messages.success(self.request, self.success_msg)

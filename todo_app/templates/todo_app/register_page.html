@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %} Регистрация пользователя {% endblock %}
+{% block title %} Реєстрація користувача {% endblock %}
 
 
 {% block content %}
 
-    <h1 class="mt-4">Регистрация пользователя</h1>
+    <h1 class="mt-4">Реєстрація користувача</h1>
 
     <div class="col-4">
         <form id="add_form" method="post">
               {% csrf_token %}
               {{ form }}
-          <button form="add_form" type="submit" class="btn btn-primary mt-4">Зарегистрироваться</button>
+          <button form="add_form" type="submit" class="btn btn-primary mt-4">Зареєструватись</button>
         </form>
     </div>
 
